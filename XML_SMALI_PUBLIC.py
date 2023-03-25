@@ -1,4 +1,4 @@
-﻿import re
+import re
 import os
 from PyQt5 import QtWidgets, QtGui, QtCore
 
@@ -52,13 +52,11 @@ class XMLAEROSmali(QtWidgets.QWidget):
                 if eslesmeler:
                     isim, tanimlayici = eslesmeler[0]
                     try:
-                        yeni_satir = yeni_satir_formati.format(isim=isim, kimlik=tanimlayici)
+                        yeni_satir = yeni_satir_formati.format(isim=isim.replace('{', '{{').replace('}', '}}').replace('"', '\\"').replace("'", "\\'"), kimlik=tanimlayici.replace('{', '{{').replace('}', '}}').replace('"', '\\"').replace("'", "\\'"))
                     except ValueError:
                         QtWidgets.QMessageBox.warning(self, "Hata", "Geçersiz karakter girdiniz.")
                         return
-                    f_out.write(yeni_satir)
-
-
+                    print(yeni_satir, file=f_out, end='\n')
 
 if __name__ == "__main__":
     uygulama = QtWidgets.QApplication([])
