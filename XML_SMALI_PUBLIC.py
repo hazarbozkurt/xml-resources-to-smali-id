@@ -1,11 +1,13 @@
 import re
 import os
 from PyQt5 import QtWidgets, QtGui, QtCore
+from qt_material import apply_stylesheet
 
 class XMLAEROSmali(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
+        apply_stylesheet(self, theme='dark_pink.xml')
         self.format_etiket = QtWidgets.QLabel("Yeni format:")
         self.format_giris = QtWidgets.QTextEdit()
         self.format_giris.setText("{isim} {kimlik}")
